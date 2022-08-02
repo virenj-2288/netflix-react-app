@@ -1,24 +1,40 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import VideoList from "./VideoList";
+import TMDB from "../api/TMDB";
 
 const VideoContainer = ({ genre }) => {
   const [movies, setMovies] = useState([]);
+
+  const BaseURL = "https://api.themoviedb.org/3/discover/movie?";
   useEffect(() => {
     const search = async () => {
-      const responce = await axios.get(
-        // "https://api.themoviedb.org/3/genre/movie/list?api_key=d7695a828fd4653146f5f0be410a47a1"
-        `https://api.themoviedb.org/3/movie/${genre}?api_key=d7695a828fd4653146f5f0be410a47a1&language=en-US&page=1`
-      );
-      // getMovie(responce.data.genres);
-      // console.log(responce.data);
+      // const responce = await axios.get(
+      //   BaseURL +
+      //     "api_key=19f84e11932abbc79e6d83f82d6d1045" +
+      //     "&language=en-US" +
+      //     "&sort_by=popularity.desc" +
+      //     "&include_adult=false" +
+      //     "&include_video=false" +
+      //     "&page=1" +
+      //     `&with_genres=${genre.id}`
+      // );
+      const responce = await TMDB.get("", {
+        params: {
+          language: "en",
+          sort_by: "popularity.desc",
+          include_adult: "false",
+          include_video: "false",
+          page: 1,
+          with_genres: genre.id,
+        },
+      });
       setMovies(responce.data.results);
-      //   console.log(responce.data.results);
+      console.log(responce.data.results);
     };
     search();
   }, []);
 
-  const text = genre.split("_").join(" ").toUpperCase();
+  const text = genre.name.split("_").join(" ").toUpperCase();
 
   return (
     <div style={{ margin: "10px 0px 10px 50px" }}>
@@ -30,10 +46,8 @@ const VideoContainer = ({ genre }) => {
           fontWeight: "bold",
         }}
       >
-        {" "}
         {text}
       </label>
-      {/* <button onClick={onClick}>click</button> */}
       <VideoList movies={movies} />
     </div>
   );

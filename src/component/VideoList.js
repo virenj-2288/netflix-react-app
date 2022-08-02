@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import VideoItem from "./VideoItem";
-import axios from "axios";
-import "../css/VideoList.css";
-
+import "../css/style.css";
 const VideoList = ({ movies }) => {
   const movieJsx = movies.map((movie) => {
     return <VideoItem key={movie.id} movie={movie} />;
