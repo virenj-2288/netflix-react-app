@@ -24,7 +24,9 @@ function App() {
   return (
     <div className="App" style={{ background: "#2E2E2E" }}>
       <Header />
+      <div style={{ height: "600px" }}> </div>
       <VideoSection />
+
       <Footer />
     </div>
   );
