@@ -1,29 +1,37 @@
 import React from "react";
 import "../css/style.css";
 import netflixIcon from "../images/netflix.png";
+import { FaBell } from "react-icons/fa";
+import { ImSearch } from "react-icons/im";
+import { IoMdArrowDropdown } from "react-icons/io";
+import ProfileLogo from "../images/witcherLogo.jpg";
 
 const Header = () => {
+  const OnSearchClick = (event) => {
+    console.log(event.target);
+  };
+
   return (
     <div>
-      <header class="showcase">
-        {/* <div class="showcase-top">
+      {/* <header class="showcase"> */}
+      {/* <header> */}
+      {/* <div class="showcase-top">
           <img src="https://i.ibb.co/r5krrdz/logo.png" alt="" />
           <a href="#" class="btn btn-rounded">
             Sign In
           </a>
         </div> */}
 
-        <nav className="netflix-navbar">
-          <div className="navbar-left">
-            {/* {/* <div className="navbar-logo"> */}
-            <img
+      {/* <nav className="netflix-navbar"> */}
+      {/* <div className="navbar-left"> */}
+      {/* {/* <div className="navbar-logo"> */}
+      {/* <img
               className="netflix-img"
               src={netflixIcon}
               alt="Netflix Logo"
               width="50px"
               height="50px"
             />
-            {/* </div> */}
             <div className="navbar-list">
               <ui className="navbar-ui">
                 <li className="nav-li">Home</li>
@@ -32,16 +40,105 @@ const Header = () => {
                 <li className="nav-li">New & Popular</li>
                 <li className="nav-li">Audio & Subtitles</li>
               </ui>
+            </div> */}
+      {/* </div> */}
+      {/* <div className="navbar-rigth">
+            <input
+              type="text"
+              placeholder="Search.."
+              name="search"
+              style={{ visibility: "hidden", inclusion: "hidden" }}
+            />
+            <button
+              type="submit"
+              className="btn navbar-right-item search"
+              onClick={OnSearchClick}
+            >
+              <ImSearch />
+            </button>
+            <a href="#" className=" btn  navbar-right-item  children">
+              Children
+            </a>
+
+            <button
+              type="button"
+              className="btn navbar-right-item  notifications"
+            >
+              <FaBell size={20} />
+            </button>
+
+            <button className="btn profile  navbar-right-item  notifications">
+              <img className="profile-logo" src={ProfileLogo} atl="" />
+              <IoMdArrowDropdown />
+            </button>
+          </div> */}
+      {/* </nav> */}
+
+      {/* <div class="showcase-content">
+          <h1>See what's next</h1>
+          <p>Watch anywhere. Cancel Anytime</p>
+          <a href="#" class="btn btn-xl">
+            Watch Free For 30 Days <i class="fas fa-chevron-right btn-icon"></i>
+          </a>
+        </div> */}
+      {/* </header> */}
+
+      <header className="showcase">
+        <nav className="netflix-navbar">
+          <div className="navbar-left">
+            <div className="navbar-logo">
+              <img
+                className="netflix-img"
+                src={netflixIcon}
+                alt="Netflix Logo"
+                width="50px"
+                height="50px"
+              />
+              <div className="navbar-list">
+                <ui className="navbar-ui">
+                  <li className="nav-li">Home</li>
+                  <li className="nav-li">TV Shows</li>
+                  <li className="nav-li">Movies</li>
+                  <li className="nav-li">New & Popular</li>
+                  <li className="nav-li">Audio & Subtitles</li>
+                </ui>
+              </div>
             </div>
           </div>
           <div className="navbar-rigth">
-            {/* <i classname="search"></i> */}
-            <i classname="searchIcon fas fa-search"></i>
-            <p> fjkjklfjkljklfjkjfkljdkljfkljkldfjklfjklj</p>
+            <input
+              type="text"
+              placeholder="Search.."
+              name="search"
+              style={{ visibility: "hidden", inclusion: "hidden" }}
+            />
+            <button
+              type="submit"
+              className="btn navbar-right-item search"
+              onClick={OnSearchClick}
+            >
+              <ImSearch />
+            </button>
+            <a href="#" className=" btn  navbar-right-item  children">
+              Children
+            </a>
+
+            <button
+              type="button"
+              className="btn navbar-right-item  notifications"
+            >
+              <FaBell size={20} />
+            </button>
+
+            <button className="btn profile  navbar-right-item  notifications">
+              <img className="profile-logo" src={ProfileLogo} atl="" />
+              <IoMdArrowDropdown />
+            </button>
           </div>
         </nav>
+      </header>
 
-        {/* <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      {/* <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="container-fluid">
             <a class="navbar-brand" href="#">
               <img
@@ -120,7 +217,7 @@ const Header = () => {
             </div>
           </div>
         </nav> */}
-        {/* <nav className="navbar">
+      {/* <nav className="navbar">
         
         <form className="form-navbar">
           <input
@@ -132,15 +229,6 @@ const Header = () => {
           <button> Submit </button>
         </form>
       </nav> */}
-
-        {/* <div class="showcase-content">
-          <h1>See what's next</h1>
-          <p>Watch anywhere. Cancel Anytime</p>
-          <a href="#" class="btn btn-xl">
-            Watch Free For 30 Days <i class="fas fa-chevron-right btn-icon"></i>
-          </a>
-        </div> */}
-      </header>
     </div>
   );
 };
