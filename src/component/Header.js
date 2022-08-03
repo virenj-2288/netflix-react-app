@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "../css/style.css";
 import netflixIcon from "../images/netflix.png";
 import { FaBell } from "react-icons/fa";
@@ -7,9 +7,26 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import ProfileLogo from "../images/witcherLogo.jpg";
 
 const Header = () => {
+  const inputRef = useRef();
+
   const OnSearchClick = (event) => {
-    console.log(event.target);
+    // console.log(inputRef.current.style.visibility);
+
+    if (inputRef.current.style.visibility === "hidden") {
+      inputRef.current.style.visibility = "visible";
+      inputRef.current.style.display = "";
+    } else {
+      inputRef.current.style.visibility = "hidden";
+      inputRef.current.style.display = "none";
+    }
+    // console.log(inputRef.current.style);
+    // console.log(event.target);
   };
+
+  // const onInputClick = (event) => {
+  //   inputRef.current.style.visibility = 'visible';
+  //   inputRef.current.style.display = '';
+  // }
 
   return (
     <div>
@@ -84,6 +101,14 @@ const Header = () => {
       {/* </header> */}
 
       <header className="showcase">
+
+         {/* <div class="showcase-top">
+          <img src="https://i.ibb.co/r5krrdz/logo.png" alt="" />
+          <a href="#" class="btn btn-rounded">
+            Sign In
+          </a>
+        </div> */}
+
         <nav className="netflix-navbar">
           <div className="navbar-left">
             <div className="navbar-logo">
@@ -106,19 +131,29 @@ const Header = () => {
             </div>
           </div>
           <div className="navbar-rigth">
-            <input
-              type="text"
-              placeholder="Search.."
-              name="search"
-              style={{ visibility: "hidden", inclusion: "hidden" }}
-            />
-            <button
-              type="submit"
-              className="btn navbar-right-item search"
-              onClick={OnSearchClick}
-            >
-              <ImSearch />
-            </button>
+            <div className="search-box">
+              <button
+                type="button"
+                className="btn"
+                onClick={OnSearchClick}
+              >
+                <ImSearch />
+              </button>
+              <input
+                ref={inputRef}
+                type="text"
+                placeholder="Titles, people, genres"
+                name="search"
+                className="search-input"
+                style={{
+                  visibility: "hidden",
+                  // inclusion: "hidden",
+                  display: "none",
+                }}
+                // onClick = {onInputClick}
+              />
+            </div>
+
             <a href="#" className=" btn  navbar-right-item  children">
               Children
             </a>
