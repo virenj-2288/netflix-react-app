@@ -1,35 +1,117 @@
-import React, { useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../css/style.css";
 import netflixIcon from "../images/netflix.png";
-import { FaBell } from "react-icons/fa";
+import { FaBell, FaBlackTie } from "react-icons/fa";
 import { ImSearch } from "react-icons/im";
 import { IoMdArrowDropdown } from "react-icons/io";
 import ProfileLogo from "../images/witcherLogo.jpg";
 
 const Header = () => {
   const inputRef = useRef();
+  const [isSearchBoxOpen, setSearchBoxOpen] = useState(false);
 
-  const OnSearchClick = (event) => {
-    // console.log(inputRef.current.style.visibility);
+  useEffect(() => {
+    const onBodyClick = (event) => {
+      if (inputRef.current.contains(event.target)) {
+        return;
+      }
+      setSearchBoxOpen(false);
+    };
+    document.body.addEventListener("click", onBodyClick);
+    return () => {
+      document.body.removeEventListener("click", onBodyClick);
+    };
+  }, []);
 
-    if (inputRef.current.style.visibility === "hidden") {
-      inputRef.current.style.visibility = "visible";
-      inputRef.current.style.display = "";
-    } else {
-      inputRef.current.style.visibility = "hidden";
-      inputRef.current.style.display = "none";
+  const onSearchBoxClick = (event) => {
+    if (inputRef.current.children["searchInput"] != event.target) {
+      setSearchBoxOpen(!isSearchBoxOpen);
     }
-    // console.log(inputRef.current.style);
-    // console.log(event.target);
   };
+  const styles = {
+    background: "black",
+    border: "1px solid #E8E8E8",
+    width: "270px",
+    height: "35px",
+    verticalAlign: "middle",
+    display: "inline-block",
+    opacity: 0.9,
+    // transition: "all 3s linear",
 
-  // const onInputClick = (event) => {
-  //   inputRef.current.style.visibility = 'visible';
-  //   inputRef.current.style.display = '';
-  // }
-
+    animationName: "example",
+    animationDuration: "5s",
+    animationTimingFunction: "ease-in-out",
+    animationDelay: "5s",
+    animationIterationCount: "infinite",
+    animationDirection: "alternate",
+  };
   return (
     <div>
+      <header className="showcase">
+        <nav className="netflix-navbar">
+          <div className="navbar-left">
+            <div className="navbar-logo">
+              <img
+                className="netflix-img"
+                src={netflixIcon}
+                alt="Netflix Logo"
+                width="50px"
+                height="50px"
+              />
+              <div className="navbar-list">
+                <ui className="navbar-ui">
+                  <li className="nav-li">Home</li>
+                  <li className="nav-li">TV Shows</li>
+                  <li className="nav-li">Movies</li>
+                  <li className="nav-li">New & Popular</li>
+                  <li className="nav-li">Audio & Subtitles</li>
+                </ui>
+              </div>
+            </div>
+          </div>
+          <div className="navbar-rigth">
+            <div
+              className="search-box"
+              ref={inputRef}
+              style={isSearchBoxOpen ? styles : {}}
+              onClick={onSearchBoxClick}
+            >
+              <button type="button" className="btn" id="search">
+                <ImSearch />
+              </button>
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Titles, people, genres"
+                name="searchInput"
+                className="search-input"
+                style={
+                  isSearchBoxOpen
+                    ? { visibility: "visible", display: "" }
+                    : { visibility: "hidden", display: "none" }
+                }
+              />
+            </div>
+
+            <a href="#" className=" btn  navbar-right-item  children">
+              Children
+            </a>
+
+            <button
+              type="button"
+              className="btn navbar-right-item  notifications"
+            >
+              <FaBell size={20} />
+            </button>
+
+            <button className="btn profile  navbar-right-item  notifications">
+              <img className="profile-logo" src={ProfileLogo} atl="" />
+              <IoMdArrowDropdown />
+            </button>
+          </div>
+        </nav>
+      </header>
+
       {/* <header class="showcase"> */}
       {/* <header> */}
       {/* <div class="showcase-top">
@@ -99,80 +181,6 @@ const Header = () => {
           </a>
         </div> */}
       {/* </header> */}
-
-      <header className="showcase">
-
-         {/* <div class="showcase-top">
-          <img src="https://i.ibb.co/r5krrdz/logo.png" alt="" />
-          <a href="#" class="btn btn-rounded">
-            Sign In
-          </a>
-        </div> */}
-
-        <nav className="netflix-navbar">
-          <div className="navbar-left">
-            <div className="navbar-logo">
-              <img
-                className="netflix-img"
-                src={netflixIcon}
-                alt="Netflix Logo"
-                width="50px"
-                height="50px"
-              />
-              <div className="navbar-list">
-                <ui className="navbar-ui">
-                  <li className="nav-li">Home</li>
-                  <li className="nav-li">TV Shows</li>
-                  <li className="nav-li">Movies</li>
-                  <li className="nav-li">New & Popular</li>
-                  <li className="nav-li">Audio & Subtitles</li>
-                </ui>
-              </div>
-            </div>
-          </div>
-          <div className="navbar-rigth">
-            <div className="search-box">
-              <button
-                type="button"
-                className="btn"
-                onClick={OnSearchClick}
-              >
-                <ImSearch />
-              </button>
-              <input
-                ref={inputRef}
-                type="text"
-                placeholder="Titles, people, genres"
-                name="search"
-                className="search-input"
-                style={{
-                  visibility: "hidden",
-                  // inclusion: "hidden",
-                  display: "none",
-                }}
-                // onClick = {onInputClick}
-              />
-            </div>
-
-            <a href="#" className=" btn  navbar-right-item  children">
-              Children
-            </a>
-
-            <button
-              type="button"
-              className="btn navbar-right-item  notifications"
-            >
-              <FaBell size={20} />
-            </button>
-
-            <button className="btn profile  navbar-right-item  notifications">
-              <img className="profile-logo" src={ProfileLogo} atl="" />
-              <IoMdArrowDropdown />
-            </button>
-          </div>
-        </nav>
-      </header>
-
       {/* <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="container-fluid">
             <a class="navbar-brand" href="#">
