@@ -28,22 +28,33 @@ const Header = () => {
       setSearchBoxOpen(!isSearchBoxOpen);
     }
   };
-  const styles = {
+  const openStyles = {
     background: "black",
     border: "1px solid #E8E8E8",
-    width: "270px",
+    // width: "270px",
+    width: "auto",
     height: "35px",
     verticalAlign: "middle",
     display: "inline-block",
     opacity: 0.9,
+    // transition: "1s",
     // transition: "all 3s linear",
 
-    animationName: "example",
-    animationDuration: "5s",
-    animationTimingFunction: "ease-in-out",
-    animationDelay: "5s",
-    animationIterationCount: "infinite",
-    animationDirection: "alternate",
+    // animationName: "example",
+    // animationDuration: "5s",
+    // animationTimingFunction: "ease-in-out",
+    // animationDelay: "5s",
+    // animationIterationCount: "infinite",
+    // animationDirection: "alternate",
+    // transition: "3s",
+  };
+  const closeStyles = {
+    background: "transparent",
+    border: "none",
+    // width: "270px",
+    // width: "50px",
+
+    // transition: "1s",
   };
   return (
     <div>
@@ -73,7 +84,8 @@ const Header = () => {
             <div
               className="search-box"
               ref={inputRef}
-              style={isSearchBoxOpen ? styles : {}}
+              // style={isSearchBoxOpen ? styles : { transition: "3s" }}
+              style={isSearchBoxOpen ? openStyles : closeStyles}
               onClick={onSearchBoxClick}
             >
               <button type="button" className="btn" id="search">
@@ -87,8 +99,20 @@ const Header = () => {
                 className="search-input"
                 style={
                   isSearchBoxOpen
-                    ? { visibility: "visible", display: "" }
-                    : { visibility: "hidden", display: "none" }
+                    ? {
+                        visibility: "visible",
+                        // display: "",
+                        width: "270px",
+                        color: "#E8E8E8",
+                        transition: "1s",
+                      }
+                    : {
+                        visibility: "hidden",
+                        // display: "none",
+                        width: "0px",
+                        color: "none",
+                        transition: "1s",
+                      }
                 }
               />
             </div>
